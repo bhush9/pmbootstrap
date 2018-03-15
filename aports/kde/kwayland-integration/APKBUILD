@@ -2,7 +2,7 @@
 # Maintainer: Bhushan Shah <bshah@kde.org>
 pkgname=kwayland-integration
 pkgver=5.12.3
-pkgrel=1
+pkgrel=0
 pkgdesc="KWayland integration"
 url="https://www.kde.org/workspaces/plasmadesktop/"
 arch="all"
@@ -10,7 +10,7 @@ license="GPL-2.0"
 depends="kwayland kglobalaccel kidletime"
 makedepends="cmake extra-cmake-modules kwayland-dev kwindowsystem-dev kidletime-dev"
 source="https://download.kde.org/stable/plasma/${pkgver}/$pkgname-$pkgver.tar.xz"
-options="!check"
+options="!check" # there are no tests
 
 build() {
 	cd "$builddir"
