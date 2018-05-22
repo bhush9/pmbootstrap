@@ -1,0 +1,33 @@
+# Contributor: Bhushan Shah <bshah@kde.org>
+# Maintainer: Bhushan Shah <bshah@kde.org>
+pkgname=ofono-phonesim
+pkgver=1.20
+pkgrel=0
+pkgdesc="Phone Simulator for modem testing."
+url="https://git.kernel.org/pub/scm/network/ofono/phonesim.git/"
+arch="all"
+license="GPL2"
+makedepends="autoconf automake libtool qt-dev"
+install=""
+source="https://git.kernel.org/pub/scm/network/ofono/phonesim.git/snapshot/phonesim-$pkgver.tar.gz"
+builddir="$srcdir/phonesim-$pkgver"
+
+build() {
+	cd "$builddir"
+	autoreconf --install
+	./configure \
+		--build=$CBUILD \
+		--host=$CHOST \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--mandir=/usr/share/man \
+		--localstatedir=/var
+	make
+}
+
+package() {
+	cd "$builddir"
+	make DESTDIR="$pkgdir" install
+}
+
+sha512sums="04e714114b65b0e7cbba228ced7caab9ebf603ad89fdc99686d37b6131e00b5a4251d6bce894d06077e6a8ff54bf22b9b1e1e690d79efd103548abc791751551  phonesim-1.20.tar.gz"
